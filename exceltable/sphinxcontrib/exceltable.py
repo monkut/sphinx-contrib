@@ -13,6 +13,7 @@ import re
 import types
 import logging
 from datetime import datetime
+from distutils.version import StrictVersion 
 
 # Import required docutils modules
 from docutils.parsers.rst import Directive, directives
@@ -557,7 +558,7 @@ def setup(app):
   """
 
   # Sphinx 0.5 support
-  if '5' in sphinx.__version__.split('.'):
+  if StrictVersion(sphinx.__version__) <= StrictVersion('0.5') :
     app.add_directive('exceltable', ExcelTableDirective, 0, (0, 0, 0))
   else:
     app.add_directive('exceltable', ExcelTableDirective)
